@@ -1,0 +1,126 @@
+<!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/booking-walker.css" />
+
+<section>
+  <div class="slide-container swiper-container">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- start here -->
+        <% walkers.forEach(walker => { const user = users.find(user =>
+        user.user_id === walker.user_id); const walkerReviews =
+        reviews.filter(review => review.walker_id === walker.walker_id); var
+        totalRating = 0; for (const review of walkerReviews) { totalRating +=
+        review.star_rating; } const averageRating = Math.floor(totalRating /
+        walkerReviews.length); %>
+        <div class="card swiper-slide">
+          <div class="image-content">
+            <img
+              src="/get-user-photo/<%= walker.user_id %>"
+              alt="Walker Image"
+              class="card-img"
+            />
+          </div>
+          <p class="quote">
+            <img src="/assets/quotes1.png" alt="quotes1" class="quote-icon" />
+            <%= walker.walker_quote %>
+            <img src="/assets/quotes2.png" alt="quotes1" class="quote-icon" />
+          </p>
+          <div class="card-content">
+            <div class="walker-info">
+              <!-- First Column: Name, Location, Stars, Reviews -->
+              <div class="walker-details">
+                <h2 class="capitalize-name"><%= user.username %> :)</h2>
+                <p style="color: #004393">
+                  <i class="bi bi-pin-mare p-fill"></i>
+                  <%= walker.walker_location %>
+                </p>
+                <p>
+                  <% for (let i = 0; i < averageRating; i++) { %> ⭐ <% } %>
+                </p>
+                <p style="color: rgb(143, 143, 143)">
+                  (<%= walkerReviews.length %> Reviews)
+                </p>
+              </div>
+              <!-- Second Column: Book Button -->
+              <div class="button-container">
+                <button
+                  class="book-button"
+                  onclick="window.location.href='/booking-summary/<%= walker.user_id %>'"
+                >
+                  BOOK FROM <br />
+                  <span>SGD <%= walker.base_price %></span> <br />
+                  /30 min
+                </button>
+              </div>
+            </div>
+            <!-- Buttons -->
+            <div class="col-12 buttons-container">
+              <button
+                type="reset"
+                class="button-design-3 cancel"
+                onclick="handleReturnClick()"
+              >
+                Return
+              </button>
+              <a
+                href="/walker/walker-profile/<%= user.user_id %>"
+                class="button-design-3 payment"
+                >View More</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- end here -->
+        <% }); %>
+      </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+  var swiper = new Swiper(".swiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 50,
+      modifier: 4,
+      slideShadows: true,
+    },
+    loop: false,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    keyboard: {
+      enabled: true,
+    },
+    breakpoints: {
+      560: {
+        slidesPerView: 2.5,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  });
+
+  function handleReturnClick() {
+    // Navigate back to the booking page
+    window.location.href = "/booking";
+  }
+</script>

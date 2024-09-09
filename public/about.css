@@ -1,0 +1,318 @@
+/* Center elements vertically within their container */
+.center-vertical {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Style the top image */
+.top-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 8vh;
+}
+
+.top-image img {
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(50%);
+}
+
+.top-image-text {
+  font-family: "Permanent Marker", cursive;
+  font-weight: 200;
+  font-style: normal;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-90%, -50%);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.top-image-text h1 {
+  font-size: 4vw;
+  margin: 0;
+}
+
+.top-image-text p {
+  font-size: 2vw;
+  margin: 0;
+}
+
+/* Style the about-us section */
+.about-us {
+  width: 100%;
+  padding: calc(5% + 30px) 0px;
+}
+
+/* Style the picture header within the about-us section */
+.about-us .pic-header {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10%;
+}
+
+/* Style the images within the picture header, including a transition effect */
+.about-us .pic-header img {
+  width: 100%;
+  transition: transform 0.3s;
+}
+
+/* Scale up the image when the picture header is hovered over */
+.about-us .pic-header:hover img {
+  transform: scale(1.2);
+}
+
+/* Style the header text within the about-us section */
+.about-us .header-text {
+  font-weight: 500;
+  margin-top: 20px;
+  font-size: 30px;
+  color: #0d172a;
+}
+
+/* Style a small break line within the about-us section */
+.about-us .break-small {
+  margin-top: 20px;
+  width: 80px;
+  height: 4px;
+  background-color: #c02666;
+}
+
+/* Style paragraphs within the about-us section */
+.about-us .paragraph {
+  margin: 40px 20px 0 0;
+  font-size: 20px;
+  color: #0d172a;
+  text-align: justify;
+}
+
+/* Style the separator line */
+.separator-container {
+  display: flex;
+  justify-content: center;
+  margin: 70px 0;
+}
+
+.separator-line {
+  width: 90%;
+  opacity: 0.2;
+}
+
+/* Style the FAQ section */
+.faq_area {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -5vh;
+}
+
+.faq-accordian {
+  position: relative;
+  z-index: 1;
+}
+
+.faq-accordian .card {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.5rem;
+}
+
+.faq-accordian .card:last-child {
+  margin-bottom: 0;
+}
+
+/* Container for centering the title and subtitle */
+.faq_area .section_heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Adjust underline width using a pseudo-element */
+.faq_area .section_heading h2,
+.section_heading h2 {
+  position: relative;
+  font-size: 30px;
+  color: #0d172a;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.team-title,
+.section-heading {
+  text-align: center;
+  font-size: 30px;
+  color: #0d172a;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.faq_area .section_heading h2::after,
+.section_heading h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 30%;
+  border-bottom: 4px solid #c02666;
+}
+
+/* Style for the subtitle */
+.faq_area .section_heading p,
+.section_heading p {
+  font-size: 18px;
+  color: #0d172a;
+  margin-top: 20px;
+}
+
+/* Style the card header */
+.faq-accordian .card .card-header {
+  background-color: #ffffff;
+  padding: 0;
+  border-bottom-color: #ebebeb;
+}
+
+.faq-accordian .card .card-header h6 {
+  cursor: pointer;
+  padding: 1.75rem 2rem;
+  color: #c02666;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Increase width of each FAQ question box */
+.faq-accordian .card {
+  width: 100%;
+}
+
+.faq-accordian .card .card-header h6 span {
+  font-size: 1.5rem;
+}
+
+.faq-accordian .card .card-header h6.collapsed {
+  color: #070a57;
+}
+
+.faq-accordian .card .card-header h6.collapsed span {
+  transform: rotate(-180deg);
+}
+
+.faq-accordian .card .card-body {
+  padding: 1.75rem 2rem;
+}
+
+.faq-accordian .card .card-body p:last-child {
+  margin-bottom: 0;
+}
+
+.support-button {
+  color: #121345;
+}
+
+.support-button i {
+  font-size: 1.25rem;
+}
+
+.support-button a {
+  color: #c02666;
+}
+
+.support-button a:hover {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 575px) {
+  .support-button p {
+    font-size: 14px;
+  }
+
+  .support-button i {
+    font-size: 1rem;
+  }
+
+  .support-button a {
+    font-size: 13px;
+  }
+}
+
+.reduce-top-space {
+  margin-top: -5vh;
+}
+
+/* Profile styling  */
+
+.profile-area {
+  padding: 20px 0;
+}
+
+/* About us card  */
+.card {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* Banner image  */
+.profile-banner img {
+  height: 200px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 100%;
+}
+
+/* Profile pic  */
+.profile-img img {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid white;
+  margin-top: -70px;
+}
+
+/* Profile text  */
+.profile-text {
+  padding: 30px 0;
+  text-align: center;
+}
+
+/* Name  */
+.name {
+  font-weight: 900;
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+/* Profile text  */
+.profile-text p {
+  font-size: 16px;
+  padding: 0 35px;
+}
+
+/* Social media icons  */
+.profile-socials {
+  text-align: center;
+  padding-bottom: 5vh;
+}
+
+.profile-socials .bi {
+  font-size: 4vh;
+  margin: 0 10px;
+  color: #c02666;
+}
+
+.profile-socials a {
+  text-decoration: none;
+}

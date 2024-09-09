@@ -1,0 +1,173 @@
+<link rel="stylesheet" href="/walker-profile.css" />
+
+<div class="profile-container">
+  <div class="profile-card">
+    <!-- Walker Profile Image -->
+    <img
+      src="/get-user-photo/<%= userData.user_id %>"
+      alt="Walker Image"
+      class="walker-image"
+    />
+
+    <!-- Walker Quote -->
+    <blockquote>
+      <img src="/assets/quotes1.png" alt="quotes1" class="quotes-icon" /><%=
+      walkerData.walker_quote %><img
+        src="/assets/quotes2.png"
+        alt="quotes2"
+        class="quotes-icon"
+      />
+    </blockquote>
+    <hr class="mt-4 mb-4" />
+
+    <!-- Walker Information -->
+    <div class="walker-info">
+      <div class="walker-details">
+        <h2 class="capitalize-name"><%= userData.username %> :)</h2>
+        <p style="color: #004393">
+          <i class="bi bi-pin-map-fill"></i> <%= walkerData.walker_location %>
+        </p>
+        <p><% for (let i = 0; i < averageRating; i++) { %> ⭐ <% } %></p>
+        <p style="color: rgb(89, 89, 89)">(<%= reviews.length %> Reviews)</p>
+      </div>
+      <div class="price-info">
+        BOOK FROM <br>SGD <%= walkerData.base_price %> <br>/ 30 min
+      </div>
+    </div>
+    <hr class="mt-4 mb-4" />
+
+    <!-- Contact Walker Section with various social media links -->
+    <div class="contact-walker">
+      <h3 class="mb-3">Contact Walker</h3>
+      <h6 style="color: #004393">
+        <a
+          href="tel:<%= walkerData.walker_contact %>"
+          style="color: inherit; text-decoration: none"
+        >
+          <i class="bi bi-telephone-fill"></i> +65 <%= walkerData.walker_contact
+          %>
+        </a>
+      </h6>
+      <h6 style="color: #004393">
+        <a
+          href="mailto:<%= userData.email %>"
+          style="color: inherit; text-decoration: none"
+        >
+          <i class="bi bi-envelope-fill"></i> <%= userData.email %>
+        </a>
+      </h6>
+
+      <div class="social-icons mt-3">
+        <a href="https://web.whatsapp.com/" target="_blank">
+          <img src="/assets/whatsapp.png" alt="WhatsApp" />
+        </a>
+        <a href="https://www.facebook.com/" target="_blank">
+          <img src="/assets/facebook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com/" target="_blank">
+          <img src="/assets/instagram.png" alt="Instagram" />
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank">
+          <img src="/assets/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://www.snapchat.com/" target="_blank">
+          <img src="/assets/snapchat.png" alt="SnapChat" />
+        </a>
+      </div>
+    </div>
+    <hr class="mt-4 mb-4" />
+
+    <!-- Gallery Section -->
+    <div class="gallery">
+      <h3>Gallery</h3>
+      <img src="/assets/dog1.png" alt="Gallery Image 1" />
+      <img src="/assets/dog2.png" alt="Gallery Image 2" />
+      <img src="/assets/dog3.png" alt="Gallery Image 3" />
+    </div>
+    <hr class="mt-4 mb-4" />
+
+    <% if (accountType == 'walker') { %>
+    <!-- Edit Profile Button -->
+    <a href="/walker/edit-walker-profile" class="button-design-2"
+      >Edit Profile</a
+    >
+    <% } else { %>
+    <!-- Edit Profile Button -->
+    <a href="/booking-walker" class="button-design-2">Return</a>
+    <% } %>
+  </div>
+
+  <!-- Profile Details Section -->
+  <div class="profile-details">
+    <!-- Walker Bios -->
+    <h3 class="capitalize-name">About <%= userData.username %></h3>
+    <p><%= walkerData.walker_bio %></p>
+    <hr class="mt-4 mb-4" />
+
+    <!-- Skills Section -->
+    <h3>Skills</h3>
+    <ul class="skills-list">
+      <li>
+        <img src="/assets/experience.png" alt="Experience" class="skill-icon" />
+        <span><%= walkerData.walker_skills %></span>
+      </li>
+    </ul>
+    <hr class="mt-4 mb-4" />
+
+    <!-- Reviews Section -->
+    <h3>Reviews</h3>
+    <div class="review-container">
+      <% reviews.forEach(review => { %>
+      <div class="review review-color">
+        <div class="review-image-container">
+          <img
+            src="/assets/default-user-photo.png"
+            alt="Reviewer 1"
+            class="reviewer-image"
+          />
+        </div>
+        <div class="review-content">
+          <div class="review-header">
+            <h5><%= review.reviewer_name %></h5>
+            <p><%= review.review_date %></p>
+            <p class="star-rating">
+              <% for(let i = 0; i < review.star_rating; i++) { %> ⭐ <% } %>
+            </p>
+          </div>
+          <p><%= review.review %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Array of color classes
+    const colorClasses = [
+      "review-color-1",
+      "review-color-2",
+      "review-color-3",
+      "review-color-4",
+      "review-color-5",
+      "review-color-6",
+      "review-color-7",
+      "review-color-8",
+      "review-color-9",
+      "review-color-10",
+    ];
+
+    // Get all review elements
+    const reviews = document.querySelectorAll(".review-color");
+
+    reviews.forEach((review) => {
+      // Pick a random color class
+      const randomColorClass =
+        colorClasses[Math.floor(Math.random() * colorClasses.length)];
+
+      // Apply the class to the review element
+      review.classList.add(randomColorClass);
+    });
+  });
+</script>

@@ -1,0 +1,447 @@
+<link rel="stylesheet" href="/walker-profile.css" />
+<link rel="stylesheet" href="/owner-profile.css" />
+<link rel="stylesheet" href="/booking.css" />
+<link rel="stylesheet" href="/registration.css" />
+
+<form
+  action="/owner/update-owner-profile"
+  method="POST"
+  enctype="multipart/form-data"
+  id="update-owner-profile"
+>
+  <div class="profile-container">
+    <div class="profile-card">
+      <!-- Owner Profile Image -->
+      <img id="walkerImage" src="/get-user-photo" alt="Owner Image" class="owner-image" />
+
+      <!-- Upload Photo Button -->
+      <div class="mt-4">
+        <input
+          type="file"
+          name="userPhoto"
+          id="fileInput"
+          style="display: none"
+          accept="image/*"
+        />
+        <button
+          type="button"
+          class="button-design-2"
+          onclick="document.getElementById('fileInput').click()"
+        >
+          Upload Photo
+        </button>
+        <span id="fileName" style="color: #686868">No file chosen</span>
+      </div>
+
+      <hr class="mt-4 mb-4" />
+
+      <!-- Contact Walker Section with various Edit User Profile -->
+      <div class="contact-walker">
+        <h3 class="mb-3">Edit User Profile</h3>
+
+        <!-- Username -->
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="username" class="form-label"><b>Username</b></label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              value="<%= userData.username %>"
+              autocomplete="off"
+            />
+            <div class="error-container">
+              <i
+                id="username-error-icon"
+                class="bi bi-exclamation-triangle-fill error-icon"
+                style="display: none"
+              ></i>
+              <div id="username-error" class="text-danger"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="email" class="form-label"><b>Email</b></label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              value="<%= userData.email %>"
+              autocomplete="off"
+            />
+            <div class="error-container">
+              <i
+                id="email-error-icon"
+                class="bi bi-exclamation-triangle-fill error-icon"
+                style="display: none"
+              ></i>
+              <div id="email-error" class="text-danger"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Details Section -->
+    <div class="profile-details">
+      <h3>Edit Dog Profile</h3>
+      <!-- First row: dog name and breed -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="dog_name" class="form-label"><b>Dog Name</b></label>
+          <input
+            type="text"
+            class="form-control"
+            id="dog_name"
+            name="dog_name"
+            value="<%= dogData.dog_name %>"
+            autocomplete="off"
+          />
+          <div class="error-container">
+            <i
+              id="dog-name-error-icon"
+              class="bi bi-exclamation-triangle-fill error-icon"
+              style="display: none"
+            ></i>
+            <div id="dog-name-error" class="text-danger"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="dog_breed" class="form-label"
+            ><b>Dog Breed</b></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="dog_breed"
+            name="dog_breed"
+            value="<%= dogData.dog_breed %>"
+            autocomplete="off"
+          />
+          <div class="error-container">
+            <i
+              id="dog-breed-error-icon"
+              class="bi bi-exclamation-triangle-fill error-icon"
+              style="display: none"
+            ></i>
+            <div id="dog-breed-error" class="text-danger"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row: Dog Size Selection -->
+      <div class="mb-3">
+        <label class="form-label"><b>Dog Size</b></label>
+        <div class="dog-size">
+          <!-- Radio button for Small -->
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="dog_size"
+              id="small"
+              value="S"
+              required
+              <% if (dogData.dog_size == "S") { %> checked <% } %>
+            />
+            <label class="size-options-2" for="small">
+              <span class="size-label">Small</span>
+              <span class="size-weight">&lt;10kg</span>
+            </label>
+          </div>
+
+          <!-- Radio button for Medium -->
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="dog_size"
+              id="medium"
+              value="M"
+              required
+              <% if (dogData.dog_size == "M") { %> checked <% } %>
+            />
+            <label class="size-options-2" for="medium">
+              <span class="size-label">Medium</span>
+              <span class="size-weight">11-26kg</span>
+            </label>
+          </div>
+
+          <!-- Radio button for Large -->
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="dog_size"
+              id="large"
+              value="L"
+              required
+              <% if (dogData.dog_size == "L") { %> checked <% } %>
+            />
+            <label class="size-options-2" for="large">
+              <span class="size-label">Large</span>
+              <span class="size-weight">27-45kg</span>
+            </label>
+          </div>
+
+          <!-- Radio button for X-Large -->
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="dog_size"
+              id="xlarge"
+              value="XL"
+              required
+              <% if (dogData.dog_size == "XL") { %> checked <% } %>
+            />
+            <label class="size-options-2" for="xlarge">
+              <span class="size-label">X-Large</span>
+              <span class="size-weight">46+kg</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Third Row: Dog Age Selection -->
+      <div class="mb-3">
+        <label class="form-label"><b>Dog Age</b></label>
+        <div class="dog-age">
+          <!-- Radio button for Puppy -->
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="dog_age"
+              id="puppy"
+              value="Puppy"
+              required
+              <% if (dogData.dog_age == "Puppy") { %> checked <% } %>
+            />
+            <label class="age-options-2" for="puppy">
+              <span class="age-label">Puppy</span>
+              <span class="age-range">0-1 yrs</span>
+            </label>
+          </div>
+
+          <!-- Radio button for Adult -->
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="dog_age"
+              id="adult"
+              value="Adult"
+              required
+              <% if (dogData.dog_age == "Adult") { %> checked <% } %>
+            />
+            <label class="age-options-2" for="adult">
+              <span class="age-label">Adult</span>
+              <span class="age-range">2-8 yrs</span>
+            </label>
+          </div>
+
+          <!-- Radio button for Senior -->
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="dog_age"
+              id="senior"
+              value="Senior"
+              required
+              <% if (dogData.dog_age == "Senior") { %> checked <% } %>
+            />
+            <label class="age-options-2" for="senior">
+              <span class="age-label">Senior</span>
+              <span class="age-range">9+ yrs</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fourth row: Special Needs -->
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="special_needs" class="form-label"><b>Special Needs or Medical Conditions</b></label>
+          <textarea
+            class="form-control"
+            id="special_needs"
+            name="special_needs"
+            autocomplete="off"
+            rows="5"
+          >
+<%= dogData.special_needs %></textarea
+          >
+          <div class="error-container">
+            <i
+              id="special-needs-error-icon"
+              class="bi bi-exclamation-triangle-fill error-icon"
+              style="display: none"
+            ></i>
+            <div id="special-needs-error" class="text-danger"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Fifth row: Remark -->
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="dog_remark" class="form-label"><b>Remarks</b></label>
+          <textarea
+            class="form-control"
+            id="dog_remark"
+            name="dog_remark"
+            autocomplete="off"
+            rows="5"
+          >
+<%= dogData.dog_remark %></textarea
+          >
+          <div class="error-container">
+            <i
+              id="remark-error-icon"
+              class="bi bi-exclamation-triangle-fill error-icon"
+              style="display: none"
+            ></i>
+            <div id="remark-error" class="text-danger"></div>
+          </div>
+        </div>
+      </div>
+
+        <!-- Cancel and Update Buttons -->
+        <div class="mt-3">
+          <div class="col-12">
+            <button
+              type="reset"
+              class="button-design-3 cancel"
+              onclick="handleCancelClick()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="button-design-3 update">
+              Edit & Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  function handleCancelClick() {
+    document.querySelector("form").reset();
+    window.history.back();
+  }
+
+  // Display the selected file name
+  document
+    .getElementById("fileInput")
+    .addEventListener("change", function (event) {
+      const file = event.target.files[0];
+      const fileNameSpan = document.getElementById("fileName");
+      const walkerImage = document.getElementById("walkerImage");
+
+      if (file) {
+        // Update the file name text
+        fileNameSpan.textContent = file.name;
+
+        // Create a FileReader to read the file
+        const reader = new FileReader();
+
+        // Once the file is read, update the image src
+        reader.onload = function (e) {
+          walkerImage.src = e.target.result;
+        };
+
+        // Read the image file as a data URL
+        reader.readAsDataURL(file);
+      } else {
+        fileNameSpan.textContent = "No file chosen";
+      }
+    });
+
+  document.getElementById("update-owner-profile").addEventListener("submit", function (event) {
+    let valid = true;
+
+    // Clear previous errors
+    document.getElementById("username-error").textContent = "";
+    document.getElementById("email-error").textContent = "";
+    document.getElementById("dog-name-error").textContent = "";
+    document.getElementById("dog-breed-error").textContent = "";
+    document.getElementById("special-needs-error").textContent = "";
+
+    // Hide error icons
+    document.getElementById("username-error-icon").style.display = "none";
+    document.getElementById("email-error-icon").style.display = "none";
+    document.getElementById("dog-name-error-icon").style.display = "none";
+    document.getElementById("dog-breed-error-icon").style.display = "none";
+    document.getElementById("special-needs-error-icon").style.display = "none";
+
+
+    // Validate Username
+    const username = document.getElementById("username").value;
+    if (username.length < 5) {
+      document.getElementById("username-error").textContent =
+        "Username must be at least 5 characters!";
+      document.getElementById("username-error-icon").style.display = "inline";
+      valid = false;
+    }
+
+    // Validate Email
+    const email = document.getElementById("email").value;
+    if (!email.includes("@") || !email.includes(".")) {
+      document.getElementById("email-error").textContent =
+        "Invalid email format!";
+      document.getElementById("email-error-icon").style.display = "inline";
+      valid = false;
+    }
+
+    // Validate Dog Name
+    const dog_name = document.getElementById("dog_name").value;
+    if (dog_name.length < 3) {
+      document.getElementById("dog-name-error").textContent =
+        "Dog Name must be at least 3 characters!";
+      document.getElementById("dog-name-error-icon").style.display = "inline";
+      valid = false;
+    }
+    
+    // Validate Dog Breed
+    const dog_breed = document.getElementById("dog_breed").value;
+    if (dog_breed.length < 3) {
+      document.getElementById("dog-breed-error").textContent =
+        "Dog breed must be at least 3 characters!";
+      document.getElementById("dog-breed-error-icon").style.display = "inline";
+      valid = false;
+    }
+    
+    // Validate Special Needs
+    const special_needs = document.getElementById("special_needs").value;
+    if (special_needs.length < 5) {
+      document.getElementById("special-needs-error").textContent =
+        "Special needs must be at least 5 characters!";
+      document.getElementById("special-needs-error-icon").style.display = "inline";
+      valid = false;
+    }
+    
+    // Validate Remark
+    const dog_remark = document.getElementById("dog_remark").value;
+    if (dog_remark.length < 5) {
+      document.getElementById("remark-error").textContent =
+        "Remark must be at least 5 characters!";
+      document.getElementById("remark-error-icon").style.display = "inline";
+      valid = false;
+    }
+
+
+    if (!valid) {
+      event.preventDefault();
+    }
+  });
+
+</script>

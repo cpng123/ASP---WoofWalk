@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="/booking.css" />
+
+<div class="summary-container">
+  <div class="row booking-title">
+    <h3 class="mb-4">Booking Summary</h3>
+
+    <!-- Left Section -->
+    <div class="col-md-6 left-section">
+      <!-- Booking Details Container -->
+      <div class="booking-details">
+        <h3 class="mb-4">Booking Details</h3>
+        <!-- Location -->
+        <div class="detail-item">
+          <h4><i class="bi bi-pin-map-fill"></i>Location</h4>
+          <p><%= bookingDetails.location %></p>
+        </div>
+        <hr />
+        <!-- Date -->
+        <div class="detail-item">
+          <h4><i class="bi bi-calendar-check"></i>Date</h4>
+          <p><%= bookingDetails.date %></p>
+        </div>
+        <hr />
+        <!-- Time & Duration -->
+        <div class="detail-item">
+          <h4><i class="bi bi-clock"></i>Time & Duration</h4>
+          <p><%= bookingDetails.time %> (<%= bookingDetails.timeRange %> min)</p>
+        </div>
+        <hr />
+        <!-- Dog Size & Age -->
+        <div class="detail-item">
+          <h4><i class="bi bi-info-circle"></i>Dog Size & Age</h4>
+          <% if (bookingDetails.dogSize == 'S') { %>
+            <p>Small <10kg</p>
+          <% } %>
+          <% if (bookingDetails.dogSize == 'M') { %>
+            <p>Medium 11-26kg</p>
+          <% } %>
+          <% if (bookingDetails.dogSize == 'L') { %>
+            <p>Large 27-45kg</p>
+          <% } %>
+          <% if (bookingDetails.dogSize == 'XL') { %>
+            <p>X-Large 46+kg</p>
+          <% } %>
+          <% if (bookingDetails.dogAge == 'Puppy') { %>
+            <p>Puppy 0-1 yrs</p>
+          <% } %>
+          <% if (bookingDetails.dogAge == 'Adult') { %>
+            <p>Puppy 2-8 yrs</p>
+          <% } %>
+          <% if (bookingDetails.dogAge == 'Senior') { %>
+            <p>Puppy 9+ yrs</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="col-md-6 right-section">
+      <!-- Walker Details -->
+      <div class="walker-details">
+        <h3 class="card-title mb-4">Walker Details</h3>
+        <div class="walker-content">
+          <img
+            src="/get-user-photo/<%= walkerUserData.user_id %>"
+            alt="Walker Image"
+            class="walker-image"
+          />
+          <div class="walker-info">
+            <h4 class="walker-name" style="text-transform: capitalize;"><%= walkerUserData.username %> :)</h4>
+            <div class="walker-quote">
+              <img
+                src="/assets/quotes1.png"
+                alt="quotes1"
+                class="quotes-icon"
+              /><%= walkerData.walker_quote %><img
+                src="/assets/quotes2.png"
+                alt="quotes2"
+                class="quotes-icon"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Details -->
+      <div class="payment-details">
+        <h3 class="card-title mb-4">Payment Details</h3>
+        <div class="payment-item">
+          <span class="description">Walker Base price (30 mins)</span>
+          <span class="price">$<%= walkerData.base_price %></span>
+        </div>
+        <div class="payment-item">
+          <span class="description">Extended Walk </span>
+          <span class="price">$<%= bookingDetails.extraCost %></span>
+        </div>
+        <div class="payment-item total">
+          <span class="description">Total Cost</span>
+          <span class="price">$<%= bookingDetails.totalCost %></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="col-12 buttons-container">
+      <button
+        type="reset"
+        class="button-design-3 cancel"
+        onclick="handleCancelClick()"
+      >
+        Return & Edit
+      </button>
+      <button
+        type="submit"
+        class="button-design-3 payment"
+        onclick="navigateToBookingSuccessPage()"
+      >
+        Proceed to Payment
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function handleCancelClick() {
+    // Navigate back to the booking page
+    window.location.href = "/booking-walker";
+  }
+
+  function navigateToBookingSuccessPage() {
+    // Navigate to the booking success page
+    window.location.href = "/booking-success";
+  }
+</script>

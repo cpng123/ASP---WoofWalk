@@ -1,0 +1,133 @@
+/* Navbar styling */
+.navbar {
+  background-color: white;
+  height: 9vh;
+  box-shadow: rgb(143, 143, 143) 0 5px 10px -5px;
+}
+
+/* Logo */
+.logo {
+  max-height: 35px;
+}
+
+/* Navbar Links */
+.nav-link {
+  color: black;
+  font-weight: 600;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #c02666;
+}
+
+.nav-link::before {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: 0;
+  height: 3px;
+  background-color: #c02666;
+  visibility: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 90%;
+  max-width: 80px;
+  visibility: visible;
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+  border: none;
+  font-size: 1.25rem;
+}
+
+.navbar-toggler:focus,
+.btn-close:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Button Styles */
+.custom-btn {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/* Hover Effects */
+.custom-btn:hover {
+  background-color: #1d2532;
+  color: white;
+}
+
+/* Main Content */
+/* main {
+  padding-top: 10vh;
+} */
+
+/* Dropdown Menu Specific Styles */
+.nav-link.dropdown-toggle {
+  color: black;
+  transition: color 0.3s ease;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Remove underline effect for dropdown toggle */
+.nav-link.dropdown-toggle::before {
+  display: none;
+}
+
+/* Ensure dropdown background color */
+.dropdown-menu {
+  background-color: #fff;
+  padding: 5px;
+}
+
+.dropdown-item {
+  color: #0d172a;
+  text-decoration: none;
+}
+
+/* Light background on hover for dropdown items */
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #c02666;
+  font-weight: bold;
+}
+
+/* Set specific styles for the dropdown toggle when active */
+.nav-link.dropdown-toggle.active {
+  color: white;
+  background-color: #c02666;
+}
+
+/* Hover Effects for Dropdown Toggle */
+.nav-link.dropdown-toggle:hover {
+  color: white;
+  background-color: #c02666;
+  font-weight: bold;
+}

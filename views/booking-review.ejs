@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="/about.css" />
+<link rel="stylesheet" href="/booking-history.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+<!-- Top image section -->
+<div class="top-image">
+  <img src="/assets/review.jpg" alt="Review Image" />
+  <div class="top-image-text">
+    <h1>Review Walker</h1>
+    <p>Your Feedback Guides Us to Better Walks</p>
+  </div>
+</div>
+
+<!-- Review Form Container -->
+<div class="review-container">
+  <div class="review-title">
+    <h3>Leave a Review</h3>
+    <p>How would you rate the service provided?</p>
+  </div>
+
+  <form action="/booking-review/<%= walkerData.walker_id %>" method="POST">
+    <!-- Walker Image -->
+    <div class="review-image-container">
+      <img
+        src="/get-user-photo/<%= userData.user_id %>"
+        alt="Review Walker Image"
+        class="review-image"
+      />
+    </div>
+
+    <!-- Rating Section -->
+    <div class="rating-section">
+      <label for="star-rating">Rating</label>
+      <div class="star-rating mb-4">
+        <i class="fas fa-star" data-value="5"></i>
+        <i class="fas fa-star" data-value="4"></i>
+        <i class="fas fa-star" data-value="3"></i>
+        <i class="fas fa-star" data-value="2"></i>
+        <i class="fas fa-star" data-value="1"></i>
+      </div>
+      <input type="hidden" id="star-rating" name="rating"/>
+      <p id="rating-warning" class="warning-message " style="text-align: center; display:none; color: red;">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        Please select a rating.
+      </p>
+    </div>
+
+    <!-- Review Section -->
+    <div>
+      <label for="review">Review</label>
+      <textarea
+        name="review"
+        id="review"
+        class="form-control mt-3"
+        rows="3"
+        placeholder="Write your review here..."
+        required
+      ></textarea>
+    </div>
+
+    <!-- Buttons -->
+    <div class="col-12 buttons-container">
+      <button
+        type="reset"
+        class="button-design-3 cancel"
+        onclick="handleCancelClick()"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="button-design-3 payment"
+      >
+        Submit Review
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const stars = document.querySelectorAll(".star-rating .fa-star");
+    const ratingInput = document.getElementById("star-rating");
+    const ratingWarning = document.getElementById("rating-warning");
+
+    stars.forEach((star) => {
+      star.addEventListener("click", () => {
+        const rating = star.getAttribute("data-value");
+        ratingInput.value = rating;
+
+        // Remove 'selected' class from all stars
+        stars.forEach((s) => s.classList.remove("selected"));
+
+        // Add 'selected' class to the clicked star and all stars to its left
+        star.classList.add("selected");
+        let nextSibling = star.nextElementSibling;
+        while (nextSibling) {
+          nextSibling.classList.add("selected");
+          nextSibling = nextSibling.nextElementSibling;
+        }
+
+        // Hide the warning message if a star is selected
+        ratingWarning.style.display = "none";
+      });
+
+      star.addEventListener("mouseover", () => {
+        // Remove 'hover' class from all stars
+        stars.forEach((s) => s.classList.remove("hover"));
+
+        // Add 'hover' class to the hovered star and all stars to its left
+        star.classList.add("hover");
+        let nextSibling = star.nextElementSibling;
+        while (nextSibling) {
+          nextSibling.classList.add("hover");
+          nextSibling = nextSibling.nextElementSibling;
+        }
+      });
+
+      star.addEventListener("mouseout", () => {
+        // Remove 'hover' class from all stars
+        stars.forEach((s) => s.classList.remove("hover"));
+      });
+    });
+
+    // Show warning message if no rating is selected on submit
+    document.querySelector('form').addEventListener('submit', (event) => {
+      if (!ratingInput.value) {
+        event.preventDefault();
+        ratingWarning.style.display = "block";  // Show the warning message
+      }
+    });
+});
+
+
+  function handleCancelClick() {
+    document.querySelector("form").reset();
+    window.location.href = "/booking-history";
+  }
+
+  document.querySelector('form').addEventListener('submit', (event) => {
+    const starRating = document.getElementById('star-rating');
+    if (!starRating.value) {
+      event.preventDefault();
+    }
+  });
+
+</script>

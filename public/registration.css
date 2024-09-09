@@ -1,0 +1,131 @@
+/* Ensures that the container for the form is centered 
+and covers the full viewport height */
+.box-design-1 {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form container styling */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 2em;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 0.5em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin-top: 10vh;
+}
+
+/* Error container styling */
+.error-container {
+  display: flex;
+  align-items: center;
+}
+
+.error-icon {
+  color: red;
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+/* Hides default radio buttons */
+input[type="radio"] {
+  display: none;
+}
+
+/* Styles for account type selection */
+.account-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Styles for account type options */
+.account-options {
+  color: rgb(97, 97, 97);
+  cursor: pointer;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  padding: 0.4em 5.5em;
+  border-radius: 0.5em;
+  transition: all 0.2s;
+  margin-left: -23px;
+}
+
+/* Styles for the selected radio option */
+input[type="radio"]:checked + .account-options {
+  border: 2.5px solid;
+  border-color: #c02666;
+  color: #c02666;
+  font-weight: bold;
+}
+
+/* Styles for the submit button */
+.btn-design-1 {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  border: 2px solid #c02666;
+  background-color: #fff;
+  color: #c02666;
+  font-weight: bold;
+  border-radius: 0.5em;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Hover state for the submit button */
+.btn-design-1:hover {
+  background-color: #c02666;
+  color: #fff;
+}
+
+/* Styles for the title with a decorative line below it */
+.title-with-line {
+  position: relative;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+/* Decorative line under the title */
+.title-with-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  background-color: #c02666;
+  height: 4px;
+  width: 60px;
+  box-sizing: border-box;
+}
+
+/* Style for the "Forgot password?" link */
+.forgot-password-link {
+  color: rgb(97, 97, 97);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgot-password-link:hover {
+  font-weight: bold;
+  color: #c02666;
+}
+
+/* Login message */
+.message {
+  color: red;
+  background-color: #ffdddd;
+  border: 1px solid red;
+  padding: 15px;
+  margin: 14vh auto -10vh auto;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
